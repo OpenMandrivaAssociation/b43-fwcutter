@@ -12,7 +12,6 @@ Patch0:		%{name}-008-install_perms.patch
 URL:		http://bcm43xx.berlios.de/
 License:	GPL
 Group:		System/Configuration/Networking
-BuildRoot:	%{_tmppath}/%{name}-buildroot
 #Obsoletes:	bcm43xx-fwcutter
 
 %description
