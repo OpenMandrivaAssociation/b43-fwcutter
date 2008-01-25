@@ -1,15 +1,16 @@
 %define name	b43-fwcutter
-%define version	008
-%define release %mkrel 2
+%define version	010
+%define release %mkrel 1
 
 Name: 	 	%{name}
 Summary: 	Tool to extract firmware for Broadcom 43xx network chip
 Version: 	%{version}
 Release: 	%{release}
 
-Source:		%{name}-%{version}.tar.bz2
+Source:		http://bu3sch.de/b43/fwcutter/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-008-install_perms.patch
-URL:		http://bcm43xx.berlios.de/
+URL:		http://linuxwireless.org/en/users/Drivers/b43
+#previous site http://bcm43xx.berlios.de/
 License:	GPL
 Group:		System/Configuration/Networking
 BuildRoot:	%{_tmppath}/%{name}-buildroot
@@ -17,12 +18,22 @@ BuildRoot:	%{_tmppath}/%{name}-buildroot
 
 %description
 Fwcutter allows you to extract the firmware required for Broadcom 43xx chips
-out of the .sys files commonly available with the card or on the internet.
+out of the .o files available with the card or on the internet.
 
-It can extract v3 or v4 firmwares onto b43legacy or b43 folder, or at the 
-location of your choice.
+Not all versions of the firmwares are supported by this tool.
+You can list supported firmwares with :
+b43-fwcutter -l
 
-Once extracted, place the files in this folder into /lib/firmware.
+Depending on your chip, you will need a version 3 or 4 firmware.
+
+Useful reading and links to firmwares that can be extracted are available at 
+http://linuxwireless.org/en/users/Drivers/b43
+
+Extract (as root) with :
+b43-fwcutter -w /lib/firmware wl_apsta_mimo.o
+
+It will create files directly at the required place (in either b43legacy or 
+b43 subfolder).
 
 %prep
 %setup -q
@@ -35,18 +46,13 @@ perl -pi -e 's|man/man1|share/man/man1|g' Makefile
 %install
 rm -rf $RPM_BUILD_ROOT
 make install PREFIX=%buildroot/%_prefix
-cat > README.urpmi <<EOF
-You need to extract the firmware your the .sys file provided by your vendor.
-i.e b43-fwcutter -w /lib/firmware/ bcmwl5.sys
-EOF
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%doc README README.urpmi
+%doc README
 %{_bindir}/*
 %{_mandir}/man1/*
-
 
