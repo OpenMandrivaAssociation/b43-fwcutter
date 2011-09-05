@@ -1,26 +1,23 @@
 %define name	b43-fwcutter
-%define version	013
-%define release %mkrel 3
+%define version	015
+%define release %mkrel 1
 
 Name:		%{name}
 Summary:	Tool to extract firmware for Broadcom 43xx network chip
 Version:	%{version}
 Release:	%{release}
-# This is beta release but we must include it as it significantly widens number
-# of supported devices...
 Source:		http://bu3sch.de/b43/fwcutter/%{name}-%{version}.tar.bz2
-#Source:	%{name}-%{version}b.tar.lzma
-Patch0:		%{name}-013-install_perms.patch
+Patch0:		%{name}-015-install.patch
 URL:		http://linuxwireless.org/en/users/Drivers/b43
 #previous site http://bcm43xx.berlios.de/
-License:	GPL
+License:	BSD
 Group:		System/Configuration/Networking
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 #Obsoletes:	bcm43xx-fwcutter
 
 %description
 Fwcutter allows you to extract the firmware required for Broadcom 43xx chips
-out of the .o files available with the card or on the internet.
+out of the .o files available with the card or on the Internet.
 
 Not all versions of the firmwares are supported by this tool.
 You can list supported firmwares with :
@@ -36,12 +33,12 @@ b43-fwcutter -w /lib/firmware wl_apsta_mimo.o OR
 b43-fwcutter -w /lib/firmware wl_apsta.o (for LP-PHY cards like BCM4312 only!)
 
 It will create files directly at the required place (in either b43legacy or 
-b43 subfolder).
+b43 subdirectory).
 
 %prep
 %setup -q
 %patch0 -p1
-perl -pi -e 's|man/man1|share/man/man1|g' Makefile
+#perl -pi -e 's|man/man1|share/man/man1|g' Makefile
 
 %build
 %make
@@ -56,6 +53,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root)
 %doc README
+%doc COPYING
 %{_bindir}/*
 %{_mandir}/man1/*
 
