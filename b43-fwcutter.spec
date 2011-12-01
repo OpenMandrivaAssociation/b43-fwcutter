@@ -44,11 +44,11 @@ b43 subdirectory).
 %make
 										
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 make install PREFIX=%buildroot/%_prefix
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
