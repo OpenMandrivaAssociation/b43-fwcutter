@@ -1,0 +1,18 @@
+diff -Nurp b43-fwcutter-013.orig/Makefile b43-fwcutter-013/Makefile
+--- b43-fwcutter-013.orig/Makefile	2010-04-19 18:51:05.000000000 +0300
++++ b43-fwcutter-013/Makefile	2010-04-19 23:48:01.261080118 +0300
+@@ -51,10 +51,10 @@ $(BIN): $(call OBJS,$(SRCS))
+ 	$(QUIET_CC) $(CFLAGS) -o $(BIN) $(call OBJS,$(SRCS)) $(LDFLAGS)
+ 
+ install: all
+-	install -d -o 0 -g 0 -m 755 $(PREFIX)/bin/
+-	install -o 0 -g 0 -m 755 $(BIN) $(PREFIX)/bin/
+-	install -d -o 0 -g 0 -m 755 $(PREFIX)/man/man1/
+-	install -o 0 -g 0 -m 644 $(BIN).1 $(PREFIX)/man/man1/
++	install -d -m 755 $(PREFIX)/bin/
++	install -m 755 $(BIN) $(PREFIX)/bin/
++	install -d -m 755 $(PREFIX)/share/man/man1/
++	install -m 644 $(BIN).1 $(PREFIX)/share/man/man1/
+ 
+ clean:
+ 	-rm -Rf obj dep *.orig *.rej *~
