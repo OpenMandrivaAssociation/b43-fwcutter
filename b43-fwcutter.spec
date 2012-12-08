@@ -1,18 +1,17 @@
 %define name	b43-fwcutter
-%define version	015
+%define version	016
+%define subrel 1
 %define release %mkrel 1
 
 Name:		%{name}
 Summary:	Tool to extract firmware for Broadcom 43xx network chip
 Version:	%{version}
 Release:	%{release}
-Source:		http://bu3sch.de/b43/fwcutter/%{name}-%{version}.tar.bz2
+Source0:	http://bues.ch/b43/fwcutter/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-015-install.patch
 URL:		http://linuxwireless.org/en/users/Drivers/b43
-#previous site http://bcm43xx.berlios.de/
 License:	BSD
 Group:		System/Configuration/Networking
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 #Obsoletes:	bcm43xx-fwcutter
 
 %description
@@ -44,16 +43,10 @@ b43 subdirectory).
 %make
 										
 %install
-rm -rf %{buildroot}
 make install PREFIX=%buildroot/%_prefix
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %doc README
 %doc COPYING
 %{_bindir}/*
 %{_mandir}/man1/*
-
