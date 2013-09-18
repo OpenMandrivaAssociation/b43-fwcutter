@@ -1,6 +1,6 @@
 Name:		b43-fwcutter
 Summary:	Tool to extract firmware for Broadcom 43xx network chip
-Version:	017
+Version:	018
 Release:	1
 License:	BSD
 Group:		System/Configuration/Networking
@@ -34,7 +34,7 @@ b43 subdirectory).
 
 %build
 %setup_compile_flags
-%make
+%make CC=%{__cc}
 
 %install
 make install PREFIX=%{buildroot}%{_prefix}
