@@ -1,7 +1,7 @@
 Name:		b43-fwcutter
 Summary:	Tool to extract firmware for Broadcom 43xx network chip
 Version:	017
-Release:	1
+Release:	2
 License:	BSD
 Group:		System/Configuration/Networking
 URL:		http://linuxwireless.org/en/users/Drivers/b43
