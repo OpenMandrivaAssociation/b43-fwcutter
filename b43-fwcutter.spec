@@ -4,7 +4,7 @@ Version:	019
 Release:	7
 License:	BSD
 Group:		System/Configuration/Networking
-URL:		http://linuxwireless.org/en/users/Drivers/b43
+URL:		https://linuxwireless.org/en/users/Drivers/b43
 Source0:	http://bues.ch/b43/fwcutter/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-015-install.patch
 
